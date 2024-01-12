@@ -1,17 +1,22 @@
 <?php
 
+require_once 'data.php';
+require_once 'word.php';
+require_once 'player.php';
+
 class LanguageGame
 {
     private array $words;
+    private ?Word $currentWord = null;
+    private ?Player $player = null;
 
     public function __construct()
     {
-        // :: is used for static functions
-        // They can be called without an instance of that class being created
-        // and are used mostly for more *static* types of data (a fixed set of translations in this case)
+        
         foreach (Data::words() as $frenchTranslation => $englishTranslation) {
             // TODO: create instances of the Word class to be added to the words array
-        }
+            $this->words[] = new Word($frenchTranslation, $englishTranslation);
+        }   
     }
 
     public function run(): void
