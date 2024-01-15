@@ -7,7 +7,12 @@
     <title>Game</title>
 </head>
 <body>
-    <h1>Translate the word: <?php echo $game->getCurrentWord()->getFrenchWord(); ?></h1>
+   
+<?php
+// Check if $game is defined 
+if (isset($game) && method_exists($game, 'getCurrentWord') && ($currentWord = $game->getCurrentWord())):
+?>
+    <h1>Translate the word: <?php echo $currentWord->getFrenchWord(); ?></h1>
 
     <form method="post" action="">
         <label for="user_answer">Your answer:</label>
@@ -15,10 +20,11 @@
         <button type="submit">Submit</button>
     </form>
 
-    <?php 
-    if (isset($message)) {
-        echo '<p>' . $message . '</p>';
-    }?>
+    <?php
+else:
+    echo '<p>No word available to translate.</p>';
+endif;
+?>
     <p>Player: <?php echo $game->getPlayer()->getName(); ?> | Score: <?php echo $game->getPlayer()->getScore(); ?></p>
 </body>
 </html>
