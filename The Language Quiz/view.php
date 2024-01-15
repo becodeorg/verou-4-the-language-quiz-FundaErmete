@@ -15,7 +15,10 @@
         <button type="submit">Submit</button>
     </form>
 
-    <p><?php echo $message; ?></p>
+    <?php 
+    if (isset($message)) {
+        echo '<p>' . $message . '</p>';
+    }?>
     <p>Player: <?php echo $game->getPlayer()->getName(); ?> | Score: <?php echo $game->getPlayer()->getScore(); ?></p>
 </body>
 </html>
